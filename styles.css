@@ -417,3 +417,24 @@ body {
   from { opacity: 1; }
   to { opacity: 0; }
 }
+
+/* ohňostroj */
+.firework {
+  position: fixed;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: firework 1200ms ease-out forwards;
+}
+
+@keyframes firework {
+  from {
+    transform: translate(0,0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--x), var(--y)) scale(0.4);
+    opacity: 0;
+  }
+}

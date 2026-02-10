@@ -22,6 +22,29 @@ const openGift = () => {
     createBalloons(9);
     startConfetti();
   }, 760);
+
+  const music = document.getElementById("birthdayMusic");
+  if (music) {
+    music.volume = 0;
+    music.play();
+
+    let v = 0;
+    const fade = setInterval(() => {
+    v += 0.05;
+    music.volume = Math.min(v, 0.5);
+    if (v >= 0.5) clearInterval(fade);
+    }, 150);
+  }
+
+  introScreen.classList.add('is-leaving');
+
+  setTimeout(() => {
+    introScreen.style.display = 'none';
+    celebrationScreen.classList.add('is-active');
+
+    createBalloons(9);
+    startConfetti();
+  }, 760);
 };
 
 // Vytvoří 1 částici konfety s náhodnými vlastnostmi.
@@ -78,7 +101,7 @@ const createBalloons = (count) => {
 giftButton.addEventListener('click', openGift);
 
 // Postupně se objevující text
-const message = "Jsi ten nejkrásnější dárek v našem životě. Všechno nejlepší, mami! ❤️";
+const message = "Jsi ten nejkrásnější dárek v našem životě. Všechno nejlepší, lásko! ❤️";
 let i = 0;
 
 const el = document.querySelector(".message");
@@ -87,7 +110,7 @@ function type() {
   if (i < message.length) {
     el.textContent += message.charAt(i);
     i++;
-    setTimeout(type, 40);
+    setTimeout(type, 125);
   }
 }
 type();
@@ -179,6 +202,41 @@ document.addEventListener("DOMContentLoaded", () => {
   // nový květ vyrůstá dřív než starý dopadne
   setInterval(spawnFlower, 4500);
 
+});
+
+const FIREWORK_COLORS = [
+  "#ff6b9a",
+  "#ffd43b",
+  "#845ef7",
+  "#4dabf7",
+  "#63e6be",
+  "#ff922b"
+];
+
+function firework(x, y) {
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement("div");
+    p.className = "firework";
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance = Math.random() * 90 + 30;
+
+    p.style.left = x + "px";
+    p.style.top = y + "px";
+    p.style.background =
+      FIREWORK_COLORS[Math.floor(Math.random() * FIREWORK_COLORS.length)];
+
+    p.style.setProperty("--x", Math.cos(angle) * distance + "px");
+    p.style.setProperty("--y", Math.sin(angle) * distance + "px");
+
+    document.body.appendChild(p);
+
+    setTimeout(() => p.remove(), 900);
+  }
+}
+
+celebrationScreen.addEventListener("click", (e) => {
+  firework(e.clientX, e.clientY);
 });
 
 // Úklid při opuštění stránky.
