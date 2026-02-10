@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Všechno nejlepší!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Úvodní obrazovka s dárkem -->
+    <main class="app">
+      <section id="intro" class="screen intro-screen">
+        <h1 class="intro-title">Otevři mě</h1>
+        <button id="giftButton" class="gift-button" aria-label="Otevřít dárek">
+          <span class="gift-lid"></span>
+          <span class="gift-ribbon-vertical"></span>
+          <span class="gift-ribbon-horizontal"></span>
+          <span class="gift-bow bow-left"></span>
+          <span class="gift-bow bow-right"></span>
+        </button>
+      </section>
+
+      <!-- Oslavná obrazovka -->
+      <section id="celebration" class="screen celebration-screen" aria-hidden="true">
+        <div id="confettiContainer" class="confetti-container" aria-hidden="true"></div>
+        <div id="balloonContainer" class="balloon-container" aria-hidden="true"></div>
+
+        <div class="content">
+          <h2 class="headline">Všechno nejlepší k narozeninám! 🎉</h2>
+          <div class="cake" role="img" aria-label="Narozeninový dort">🎂</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
