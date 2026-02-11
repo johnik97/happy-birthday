@@ -81,6 +81,9 @@ const startConfetti = () => {
   }, 520);
 };
 
+const popSound = new Audio("pop.mp3");
+popSound.volume = 0.6;
+
 // Připraví barevné balónky s různou rychlostí a zpožděním.
 const createBalloons = (count) => {
   for (let i = 0; i < count; i += 1) {
@@ -93,6 +96,17 @@ const createBalloons = (count) => {
     balloon.style.animationDuration = `${duration}s`;
     balloon.style.animationDelay = `${delay}s`;
     balloon.style.backgroundColor = BALLOON_COLORS[i % BALLOON_COLORS.length];
+
+    // POP na klik
+    balloon.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      popSound.currentTime = 0;
+      popSound.play().catch(() => {});
+
+      balloon.classList.add("pop");
+      setTimeout(() => balloon.remove(), 300);
+    });
 
     balloonContainer.append(balloon);
   }

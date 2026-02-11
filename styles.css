@@ -147,12 +147,22 @@ body {
   position: relative;
   z-index: 3;
   text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .headline {
   margin: 0 0 14px;
   font-size: clamp(1.4rem, 4vw, 2.6rem);
   text-shadow: 0 2px 8px rgba(255, 255, 255, 0.65);
+  max-width: 90%;
+}
+
+.message {
+  text-align: center;
+  max-width: 90%;
 }
 
 /* Dort s glow efektem */
@@ -191,7 +201,14 @@ body {
   position: absolute;
   inset: 0;
   overflow: hidden;
+}
+
+.confetti-container {
   pointer-events: none;
+}
+
+.balloon-container {
+  pointer-events: auto;
 }
 
 .confetti {
@@ -228,6 +245,22 @@ body {
   animation-name: balloon-rise;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+.balloon.pop {
+  animation: balloon-pop 300ms ease-out forwards;
+}
+
+@keyframes balloon-pop {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
 }
 
 .balloon::before {
@@ -257,7 +290,7 @@ body {
 .celebration-row {
   display: flex;
   gap: 48px;
-  margin-top: 40px;
+  margin-top: 80px;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
